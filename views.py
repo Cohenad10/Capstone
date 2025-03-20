@@ -9,9 +9,7 @@ def home():
 
 @views.route("/profile")
 def profile():
-    args = request.args
-    name = args.get('name')
-    return render_template("index.html", name=name)
+    return render_template("profile.html")
 
 
 
@@ -28,3 +26,4 @@ def get_data():
 @views.route("/go-to-home")
 def go_to_home():
     return redirect(url_for("views.home"))
+

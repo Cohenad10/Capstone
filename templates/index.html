@@ -5,11 +5,13 @@
     <meta http-equv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-</head>
-<body>
-  <div>
+ </head>
+ <body>
+    <div>
+      {% block content %}
       <h1>Home Page<h1></div>
       <p>Hello, {{ name }}</p>
+      {% endblock %}
     </div>
     <script 
       type="text/javascript"

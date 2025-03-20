@@ -1,0 +1,87 @@
+/* styles.css */
+/* General Styles */
+/* Responsive Design */
+:root {
+    --miami-blue: #54C3EA;
+    --gulf-orange: #F25C00;
+    --text-color: #333333; /* Dark gray for text */
+    --background-color: #FFFFFF; /* White background */
+}
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: var(--miami-blue);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--background-color);
+    margin: 0;
+}
+
+/* Navigation */
+nav {
+    background-color: var(--gulf-orange);
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: var(--background-color);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+/* Buttons */
+.button {
+    background-color: var(--gulf-orange);
+    color: var(--background-color);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--miami-blue);
+}
+
+/* Footer */
+footer {
+    background-color: var(--miami-blue);
+    color: var(--background-color);
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+@media (max-width: 768px) {
+    header, nav, main, footer {
+        text-align: center;
+        padding: 10px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}

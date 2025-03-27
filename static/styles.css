@@ -115,4 +115,15 @@
     padding: 1rem;
     margin-top: 3rem;
   }
+  .news-source {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .news-logo {
+    height: 24px;
+    width: auto;
+    margin-right: 0.5rem;
+  }
   

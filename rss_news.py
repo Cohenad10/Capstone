@@ -12,7 +12,7 @@ def fetch_car_news():
     articles = []
     for url in feed_urls:
         feed = feedparser.parse(url)
-        for entry in feed.entries[:10]:  # Grab more articles per site
+        for entry in feed.entries[:15]:  # 15 articles per site
             published = entry.get("published", "Unknown date")
             try:
                 published_dt = datetime.datetime(*entry.published_parsed[:6])

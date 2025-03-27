@@ -4,6 +4,54 @@
   <meta charset="UTF-8">
   <title>Car News - IronicTuning</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    .news-card {
+      display: flex;
+      align-items: flex-start;
+      background-color: white;
+      padding: 1rem;
+      border-left: 5px solid var(--miami-blue);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .news-card:hover {
+      transform: scale(1.02);
+    }
+    .news-thumbnail {
+      width: 120px;
+      height: auto;
+      margin-right: 1rem;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    .news-content {
+      flex: 1;
+    }
+    .news-source {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .news-logo {
+      height: 24px;
+      margin-right: 0.5rem;
+    }
+    .news-card h3 {
+      margin-top: 0;
+      color: var(--gulf-orange);
+    }
+    .news-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,29 +65,46 @@
   </nav>
 
   <main>
-    <h1>Latest Car News</h1>
-    <div style="margin-bottom: 1rem;">
+    <h1 style="text-align:center;">Latest Car News</h1>
+    <div style="text-align:center; margin-bottom: 1rem;">
       <a href="{{ url_for('home') }}" style="color: var(--gulf-orange); font-weight: bold;">← Back to Home</a>
     </div>
 
     {% if articles %}
+    <div class="news-grid">
       {% for article in articles %}
-      <div class="news-article" style="margin-bottom: 2rem; padding: 1rem; border: 1px solid var(--miami-blue); border-radius: 8px; background-color: white;">
-        <h2 style="margin-bottom: 0.5rem;">
-          <a href="{{ article.link }}" target="_blank">{{ article.title }}</a>
-        </h2>
-        <p style="font-size: 0.9rem; color: gray;">
-          {{ article.published }} — <strong>{{ article.source }}</strong>
-        </p>
+      <div class="news-card">
+        {% if article.image %}
+        <img src="{{ article.image }}" alt="Thumbnail" class="news-thumbnail">
+        {% endif %}
+        <div class="news-content">
+          <div class="news-source">
+            <img src="{{ url_for('static', filename='images/logos/' + article.source|lower|replace(' ', '_') + '.png') }}"
+                 alt="{{ article.source }} Logo"
+                 class="news-logo">
+            <strong>{{ article.source }}</strong>
+          </div>
+          <h3><a href="{{ article.link }}" target="_blank">{{ article.title }}</a></h3>
+          <p>{{ article.published }}</p>
+        </div>
       </div>
       {% endfor %}
+    </div>
     {% else %}
       <p>No articles found.</p>
     {% endif %}
+    <div class="news-source">
+      <img src="{{ url_for('static', filename='images/logos/' + article.source|lower|replace(' ', '_') + '.png') }}"
+           onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/logos/default.png') }}';"
+           alt="{{ article.source }} Logo"
+           class="news-logo">
+      <strong>{{ article.source }}</strong>
+    </div>
+    
   </main>
 
   <footer>
-    <p>&copy; 2025 IronicTuning. News Powered by RSS.</p>
+    <p style="text-align:center;">&copy; 2025 IronicTuning. News Powered by RSS.</p>
   </footer>
 
 </body>

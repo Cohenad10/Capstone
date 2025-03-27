@@ -24,6 +24,10 @@ def fetch_car_news():
 
     for name, info in sources.items():
         feed = feedparser.parse(info['url'])
+        if not feed.entries:
+            print(f"❌ {name} feed failed or returned no articles")
+            continue
+
         for entry in feed.entries[:10]:
             published = entry.get("published", "Unknown date")
             try:
@@ -31,7 +35,7 @@ def fetch_car_news():
             except:
                 published_dt = datetime.datetime.utcnow()
 
-            # Try to extract image
+            # Extract thumbnail
             image_url = None
             if 'media_content' in entry:
                 image_url = entry.media_content[0].get('url')

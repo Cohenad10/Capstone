@@ -8,38 +8,18 @@
 <body>
 
     <nav>
-        <div><a href="/">IronicTuning</a></div>
-        <div>
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">News</a>
-            <a href="#">Contact</a>
-        </div>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('shop') }}">Shop</a>
+        <a href="{{ url_for('news') }}">News</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
     </nav>
 
     <header class="hero">
-        <h1>Your Build. Our Passion.</h1>
-        <p>Shop high-performance car parts and custom gear from a brand that gets it.</p>
+        <h1>Welcome to IronicTuning</h1>
+        <p>Your one-stop shop for performance parts, news, and community.</p>
     </header>
-
-    <section class="products">
-        <div class="product-card">
-            <h3>Exhaust System</h3>
-            <p>Boost performance with our stainless cat-back kits.</p>
-        </div>
-        <div class="product-card">
-            <h3>Cold Air Intake</h3>
-            <p>Improve throttle response and airflow efficiency.</p>
-        </div>
-        <div class="product-card">
-            <h3>ECU Tune</h3>
-            <p>Unleash your car’s true potential with custom tuning.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 IronicTuning. Built by enthusiasts, for enthusiasts.</p>
-    </footer>
 
 </body>
 </html>

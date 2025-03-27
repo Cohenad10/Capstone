@@ -1,7 +1,12 @@
-import feedparser
 import datetime
+import requests
+import feedparser
 from functools import lru_cache
 from bs4 import BeautifulSoup
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
 
 @lru_cache(maxsize=1)
 def fetch_car_news():
@@ -23,39 +28,50 @@ def fetch_car_news():
     articles = []
 
     for name, info in sources.items():
-        feed = feedparser.parse(info['url'])
-        if not feed.entries:
-            print(f"❌ {name} returned no articles.")
-            continue
+        try:
+            print(f"\n🔍 Fetching {name} feed...")
+            response = requests.get(info['url'], headers=HEADERS)
+            feed = feedparser.parse(response.content)
 
-        for entry in feed.entries[:10]:
-            published = entry.get("published", "Unknown date")
-            try:
-                published_dt = datetime.datetime(*entry.published_parsed[:6])
-            except:
-                published_dt = datetime.datetime.utcnow()
+            if not feed.entries:
+                print(f"❌ {name} returned no entries!")
+                continue
 
-            # Try to get an image
-            image_url = None
-            if 'media_content' in entry:
-                image_url = entry.media_content[0].get('url')
-            elif 'summary' in entry:
-                soup = BeautifulSoup(entry.summary, 'html.parser')
-                img_tag = soup.find('img')
-                if img_tag:
-                    image_url = img_tag.get('src')
+            print(f"✅ {name}: {len(feed.entries)} entries found.")
 
-            articles.append({
-                'title': entry.title,
-                'link': entry.link,
-                'published': published,
-                'published_dt': published_dt,
-                'source_name': name,
-                'source_logo': info['logo'],
-                'image': image_url
-            })
+            for entry in feed.entries[:10]:
+                published = entry.get("published", "Unknown date")
+                try:
+                    published_dt = datetime.datetime(*entry.published_parsed[:6])
+                except:
+                    published_dt = datetime.datetime.utcnow()
 
-    # Sort by most recent
+                # Get thumbnail
+                image_url = None
+                if 'media_content' in entry:
+                    image_url = entry.media_content[0].get('url')
+                elif 'summary' in entry:
+                    soup = BeautifulSoup(entry.summary, 'html.parser')
+                    img_tag = soup.find('img')
+                    if img_tag:
+                        image_url = img_tag.get('src')
+
+                article = {
+                    'title': entry.title,
+                    'link': entry.link,
+                    'published': published,
+                    'published_dt': published_dt,
+                    'source_name': name,
+                    'source_logo': info['logo'],
+                    'image': image_url
+                }
+
+                articles.append(article)
+                print(f"  - Added: {name} | {entry.title}")
+
+        except Exception as e:
+            print(f"🔥 Failed to fetch {name}: {e}")
+
     articles.sort(key=lambda x: x['published_dt'], reverse=True)
-    print(f"✅ Total articles loaded: {len(articles)}")
+    print(f"\n✅ Total articles loaded: {len(articles)}\n")
     return articles

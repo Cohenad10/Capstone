@@ -11,17 +11,17 @@ HEADERS = {
 @lru_cache(maxsize=1)
 def fetch_car_news():
     sources = {
-        'MotorTrend': {
-            'url': 'https://www.motortrend.com/rss/all.xml',
-            'logo': 'motortrend.png'
+        'Top Gear': {
+            'url': 'https://www.topgear.com/rss/car-news',
+            'logo': 'top_gear.png'
         },
         'Car and Driver': {
             'url': 'https://www.caranddriver.com/rss/all.xml',
             'logo': 'car_and_driver.png'
         },
-        'Autoblog': {
-            'url': 'https://www.autoblog.com/rss.xml',
-            'logo': 'autoblog.png'
+        'Carscoops': {
+            'url': 'https://www.carscoops.com/feed/',
+            'logo': 'carscoops.png'
         }
     }
 
@@ -46,7 +46,7 @@ def fetch_car_news():
                 except:
                     published_dt = datetime.datetime.utcnow()
 
-                # Get image if available
+                # Get thumbnail
                 image_url = None
                 if 'media_content' in entry:
                     image_url = entry.media_content[0].get('url')

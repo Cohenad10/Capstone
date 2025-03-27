@@ -31,7 +31,7 @@ def fetch_car_news():
             except:
                 published_dt = datetime.datetime.utcnow()
 
-            # Extract image
+            # Try to extract image
             image_url = None
             if 'media_content' in entry:
                 image_url = entry.media_content[0].get('url')

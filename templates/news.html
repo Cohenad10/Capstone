@@ -41,10 +41,12 @@
     }
     .news-logo {
       height: 24px;
+      width: auto;
       margin-right: 0.5rem;
     }
     .news-card h3 {
       margin-top: 0;
+      margin-bottom: 0.4rem;
       color: var(--gulf-orange);
     }
     .news-card p {
@@ -80,6 +82,7 @@
         <div class="news-content">
           <div class="news-source">
             <img src="{{ url_for('static', filename='images/logos/' + article.source|lower|replace(' ', '_') + '.png') }}"
+                 onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/logos/default.png') }}';"
                  alt="{{ article.source }} Logo"
                  class="news-logo">
             <strong>{{ article.source }}</strong>
@@ -91,16 +94,8 @@
       {% endfor %}
     </div>
     {% else %}
-      <p>No articles found.</p>
+      <p style="text-align:center;">No articles found.</p>
     {% endif %}
-    <div class="news-source">
-      <img src="{{ url_for('static', filename='images/logos/' + article.source|lower|replace(' ', '_') + '.png') }}"
-           onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/logos/default.png') }}';"
-           alt="{{ article.source }} Logo"
-           class="news-logo">
-      <strong>{{ article.source }}</strong>
-    </div>
-    
   </main>
 
   <footer>

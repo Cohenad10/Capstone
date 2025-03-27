@@ -2,72 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-
- <body>
-    <div>
-    </div>
-    <script 
-      type="text/javascript"
-      src="{{ url_for('static', filename='index.js')}}"
-    ></script>
-  </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>IronicTuning</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-   <!-- Navigation Bar -->
-   <nav>
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">News</a>
-    <a href="#">Contact</a>
-</nav>
 
-<!-- Hero Section -->
-<header>
-    <h1>Welcome to IronicTuning</h1>
-    <p>Your go-to source for premium car parts, stylish clothing, and the latest car news.</p>
-    <a href="#" class="button">Shop Now</a>
-</header>
-
-<!-- About Section -->
-<main>
-    <section>
-        <h2>About Us</h2>
-        <p>We are passionate about cars, performance tuning, and automotive culture. Our goal is to provide top-quality parts and apparel for car enthusiasts worldwide.</p>
-    </section>
-
-    <!-- Featured Products -->
-    <section>
-        <h2>Featured Products</h2>
-        <div class="product">
-            <img src="{{ url_for('static', filename='images/car_part1.jpg') }}" alt="Performance Exhaust">
-            <p>Performance Exhaust System - $299</p>
-            <a href="#" class="button">Buy Now</a>
+    <nav>
+        <div><a href="/">IronicTuning</a></div>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">News</a>
+            <a href="#">Contact</a>
         </div>
+    </nav>
 
-        <div class="product">
-            <img src="{{ url_for('static', filename='images/car_part2.jpg') }}" alt="Cold Air Intake">
-            <p>Cold Air Intake Kit - $199</p>
-            <a href="#" class="button">Buy Now</a>
+    <header class="hero">
+        <h1>Your Build. Our Passion.</h1>
+        <p>Shop high-performance car parts and custom gear from a brand that gets it.</p>
+    </header>
+
+    <section class="products">
+        <div class="product-card">
+            <h3>Exhaust System</h3>
+            <p>Boost performance with our stainless cat-back kits.</p>
+        </div>
+        <div class="product-card">
+            <h3>Cold Air Intake</h3>
+            <p>Improve throttle response and airflow efficiency.</p>
+        </div>
+        <div class="product-card">
+            <h3>ECU Tune</h3>
+            <p>Unleash your car’s true potential with custom tuning.</p>
         </div>
     </section>
-</main>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 IronicTuning. All rights reserved.</p>
-</footer>
+    <footer>
+        <p>&copy; 2025 IronicTuning. Built by enthusiasts, for enthusiasts.</p>
+    </footer>
 
 </body>
 </html>

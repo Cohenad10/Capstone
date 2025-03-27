@@ -1,8 +1,79 @@
-body {
-    background-color: #54C3EA !important;  /* Miami Blue */
-    color: #F25C00 !important;  /* Gulf Orange */
+:root {
+    --miami-blue: #54C3EA;
+    --gulf-orange: #F25C00;
+    --dark-bg: #121212;
+    --light-text: #ffffff;
 }
 
-h1, h2, h3 {
-    color: #F25C00 !important;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+/* Nav Bar */
+nav {
+    background-color: var(--miami-blue);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--gulf-orange);
+}
+
+/* Hero Section */
+header.hero {
+    background-color: var(--gulf-orange);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+}
+
+header.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+header.hero p {
+    font-size: 1.2rem;
+}
+
+/* Product Section */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.product-card {
+    background-color: #1f1f1f;
+    border: 1px solid var(--miami-blue);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.product-card h3 {
+    color: var(--gulf-orange);
+}
+
+/* Footer */
+footer {
+    background-color: #0d0d0d;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
 }

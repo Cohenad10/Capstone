@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from views import views
-
+from views import app
 app = Flask(__name__)
 app.register_blueprint(views, url_prefix="/views")
 

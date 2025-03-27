@@ -9,7 +9,7 @@ def fetch_car_news():
     articles = []
     for url in feed_urls:
         feed = feedparser.parse(url)
-        for entry in feed.entries[:3]:  # Get the latest 3 from each source
+        for entry in feed.entries[:3]:  # 3 headlines per source
             articles.append({
                 'title': entry.title,
                 'link': entry.link,

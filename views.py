@@ -6,7 +6,7 @@ import os
 
 # Import models and scraper
 from models import db, User, Product, NewsArticle
-from scrapers.car_news_scraper import fetch_car_news
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'

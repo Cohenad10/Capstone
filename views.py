@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from rss_news import fetch_car_news
 import os
 
 # Import models and scraper
@@ -35,9 +36,9 @@ def shop():
 
 @app.route('/news')
 def news():
-    fetch_car_news()  # Updates on every visit (can be improved later)
-    articles = NewsArticle.query.order_by(NewsArticle.date_scraped.desc()).all()
+    articles = fetch_car_news()
     return render_template('news.html', articles=articles)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

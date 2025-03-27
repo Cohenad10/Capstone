@@ -21,18 +21,21 @@
     <div style="margin-bottom: 1rem;">
       <a href="{{ url_for('home') }}" style="color: var(--gulf-orange); font-weight: bold;">← Back to Home</a>
     </div>
-    <ul>
+
+    {% if articles %}
       {% for article in articles %}
-      <li>
-        <a href="{{ article.url }}" target="_blank">{{ article.title }}</a>
-        <span style="font-size: 0.9em;">({{ article.date_scraped.strftime('%Y-%m-%d') }})</span>
-      </li>
+      <div class="news-article">
+        <h2><a href="{{ article.link }}" target="_blank">{{ article.title }}</a></h2>
+        <p><em>Published on:</em> {{ article.published }}</p>
+      </div>
       {% endfor %}
-    </ul>
+    {% else %}
+      <p>No articles found.</p>
+    {% endif %}
   </main>
 
   <footer>
-    <p>&copy; 2025 IronicTuning. Stay Tuned.</p>
+    <p>&copy; 2025 IronicTuning. News Powered by RSS.</p>
   </footer>
 
 </body>

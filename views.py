@@ -3,8 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from rss_news import fetch_car_news
 import os
-
-# Import models and scraper
 from models import db, User, Product, NewsArticle
 
 

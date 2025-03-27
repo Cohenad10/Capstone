@@ -11,9 +11,10 @@ HEADERS = {
 @lru_cache(maxsize=1)
 def fetch_car_news():
     sources = {
-        'Top Gear': {
-            'url': 'https://www.topgear.com/rss/car-news',
-            'logo': 'top_gear.png'
+        'Jalopnik': {
+            'url': 'https://jalopnik.com/rss',
+            'logo': 'jalopnik.png'
+
         },
         'Car and Driver': {
             'url': 'https://www.caranddriver.com/rss/all.xml',

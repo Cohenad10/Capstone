@@ -20,16 +20,12 @@ def fetch_car_news():
         }
     }
 
-    all_articles = []
+    articles = []
 
-    for source_name, source_info in sources.items():
-        url = source_info["url"]
-        logo = source_info["logo"]
-
-        feed = feedparser.parse(url)
-
+    for name, info in sources.items():
+        feed = feedparser.parse(info['url'])
         if not feed.entries:
-            print(f"❌ No entries for {source_name}")
+            print(f"❌ {name} returned no articles.")
             continue
 
         for entry in feed.entries[:10]:
@@ -39,25 +35,27 @@ def fetch_car_news():
             except:
                 published_dt = datetime.datetime.utcnow()
 
-            # Get image if available
+            # Try to get an image
             image_url = None
             if 'media_content' in entry:
                 image_url = entry.media_content[0].get('url')
             elif 'summary' in entry:
                 soup = BeautifulSoup(entry.summary, 'html.parser')
-                img = soup.find('img')
-                if img and img.get('src'):
-                    image_url = img['src']
+                img_tag = soup.find('img')
+                if img_tag:
+                    image_url = img_tag.get('src')
 
-            all_articles.append({
+            articles.append({
                 'title': entry.title,
                 'link': entry.link,
                 'published': published,
                 'published_dt': published_dt,
-                'source_name': source_name,
-                'source_logo': logo,
+                'source_name': name,
+                'source_logo': info['logo'],
                 'image': image_url
             })
 
-    all_articles.sort(key=lambda x: x['published_dt'], reverse=True)
-    return all_articles
+    # Sort by most recent
+    articles.sort(key=lambda x: x['published_dt'], reverse=True)
+    print(f"✅ Total articles loaded: {len(articles)}")
+    return articles

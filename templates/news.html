@@ -40,9 +40,9 @@
       margin-bottom: 0.5rem;
     }
     .news-logo {
-      height: 24px;
+      height: 40px;
       width: auto;
-      margin-right: 0.5rem;
+      margin-right: 0.75rem;
     }
     .news-card h3 {
       margin-top: 0;
@@ -81,11 +81,11 @@
         {% endif %}
         <div class="news-content">
           <div class="news-source">
-            <img src="{{ url_for('static', filename='images/logos/' + article.source|lower|replace(' ', '_') + '.png') }}"
+            <img src="{{ url_for('static', filename='images/logos/' + article.source_logo) }}"
                  onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/logos/default.png') }}';"
-                 alt="{{ article.source }} Logo"
+                 alt="{{ article.source_name }} Logo"
                  class="news-logo">
-            <strong>{{ article.source }}</strong>
+            <strong>{{ article.source_name }}</strong>
           </div>
           <h3><a href="{{ article.link }}" target="_blank">{{ article.title }}</a></h3>
           <p>{{ article.published }}</p>

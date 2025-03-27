@@ -5,24 +5,33 @@ from bs4 import BeautifulSoup
 
 @lru_cache(maxsize=1)
 def fetch_car_news():
-    feed_sources = {
-        'motortrend': 'https://www.motortrend.com/rss/all.xml',
-        'car_and_driver': 'https://www.caranddriver.com/rss/all.xml',
-        'autoblog': 'https://www.autoblog.com/rss.xml'
+    sources = {
+        'MotorTrend': {
+            'url': 'https://www.motortrend.com/rss/all.xml',
+            'logo': 'motortrend.png'
+        },
+        'Car and Driver': {
+            'url': 'https://www.caranddriver.com/rss/all.xml',
+            'logo': 'car_and_driver.png'
+        },
+        'Autoblog': {
+            'url': 'https://www.autoblog.com/rss.xml',
+            'logo': 'autoblog.png'
+        }
     }
 
     articles = []
 
-    for source_key, url in feed_sources.items():
-        feed = feedparser.parse(url)
-        for entry in feed.entries[:10]:  # Get 10 per site
+    for name, info in sources.items():
+        feed = feedparser.parse(info['url'])
+        for entry in feed.entries[:10]:
             published = entry.get("published", "Unknown date")
             try:
                 published_dt = datetime.datetime(*entry.published_parsed[:6])
             except:
                 published_dt = datetime.datetime.utcnow()
 
-            # Try to get image from media or summary
+            # Extract image
             image_url = None
             if 'media_content' in entry:
                 image_url = entry.media_content[0].get('url')
@@ -37,10 +46,10 @@ def fetch_car_news():
                 'link': entry.link,
                 'published': published,
                 'published_dt': published_dt,
-                'source': source_key,
+                'source_name': name,
+                'source_logo': info['logo'],
                 'image': image_url
             })
 
-    # Sort all articles by date (newest first)
     articles.sort(key=lambda x: x['published_dt'], reverse=True)
     return articles

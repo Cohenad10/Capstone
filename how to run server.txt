@@ -1,0 +1,7 @@
+run views
+
+ngrok http http://localhost:8000 (in new terminal)
+
+give them the full forwarding link
+have to zoom it out to fully see
+

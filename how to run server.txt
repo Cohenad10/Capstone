@@ -2,6 +2,10 @@ run views
 
 ngrok http http://localhost:8000 (in new terminal)
 
+use this if needed (ngrok config add-authtoken 2uv9XKJOMq4FpSBM1OzDVlx5eKA_3xE7p3Lg9d4czGSniu6D3)
+
 give them the full forwarding link
 have to zoom it out to fully see
+
+
 
